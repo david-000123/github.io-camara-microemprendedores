@@ -190,7 +190,7 @@ body {
 /*--------------- carrusel -----------------*/
 #container-slider {
   grid-area: 2 / 4 / 10 / 7;  
-  background-image: url("/img/fotoportada/image_3.png");
+  background-image: url("../../img/fotoportada/image_3.png");
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -647,7 +647,7 @@ h1 .magic-text {
 
 /* Tarjeta principal */
 .card__principal {
-  background-image: url("/img/fotoServicio/foto__card__servicio.png");
+  background-image: url("../../img/fotoServicio/foto__card__servicio.png");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -791,7 +791,7 @@ h1 .magic-text {
   grid-column-start: 2;
   grid-row-start: 1;
   background-color: #fff;
-   background-image: url("/img/fotoServicio/Gemini_Generated_Image_hcqnwhcqnwhcqnwh.png");
+   background-image: url("../../img/fotoServicio/Gemini_Generated_Image_hcqnwhcqnwhcqnwh.png");
   background-repeat: repeat;
   background-size: cover;
   width: 100%;
@@ -829,7 +829,7 @@ h1 .magic-text {
 
 .entrepreneurs__grid--img {
   grid-area: 2 / 2 / 12 / 8;
-  background-image: url("/img/emprendedores/emprendedores.png");
+  background-image: url("../../img/emprendedores/emprendedores.png");
   border-radius: 20px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -938,7 +938,7 @@ h1 .magic-text {
 .training__media {
   grid-area: 2 / 6 / 12 / 12;
   border-radius: 20px;
-  background-image: url("/img/capacitaciones/capacitaciones.png");
+  background-image: url("../../img/capacitaciones/capacitaciones.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -1027,7 +1027,7 @@ h1 .magic-text {
 .foreign-trade__media {
   grid-area: 2 / 2 / 12 / 8;
   border-radius: 20px;
-  background-image: url("/img/comerceExteriror/comercioexteriror.png");
+  background-image: url("../../img/comerceExteriror/comercioexteriror.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1229,7 +1229,7 @@ h1 .magic-text {
 }
 
 .eventos__columna--izquierda .inner__img .inner__img--png{
-   background-image: url("/img/eventos/imageneventos.png");
+   background-image: url("../../img/eventos/imageneventos.png");
    background-size: contain;
    background-repeat: no-repeat;
    width: 100%;
@@ -1424,7 +1424,7 @@ h1 .magic-text {
 /* Capas superpuestas */
 .noticia__capa-intermedia {
   grid-area: 6 / 8 / 11 / 11;
-  background-image: url("/img/eventos/imageneventos.png");
+  background-image: url("../../img/eventos/imageneventos.png");
   width: 100%;
   height: 100%;
   background-size: contain;
@@ -1456,7 +1456,7 @@ h1 .magic-text {
 
 .noticia__overlay {
   grid-area: 4 / 9 / 11 / 11;
-  background-image: url("/img/eventos/noticias.png");
+  background-image: url("../../img/eventos/noticias.png");
   width: 100%;
   height: 100%;
   background-size: contain;
@@ -1696,7 +1696,7 @@ h1 .magic-text {
     .footer-qr-inner {
       width: 100%;
       height: 100%;
-      background-image: url("/img/fotos_emi/logofooter.png");
+      background-image: url("../../img/fotos_emi/logofooter.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
