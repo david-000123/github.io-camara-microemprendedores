@@ -268,7 +268,7 @@
     width: 100%;
     height: 45vw;
     max-height: 380px;
-    background-size: cover;
+    background-size: contain;
     background-position: center top;
   }
 
@@ -360,10 +360,6 @@
 /*NAV */
 
 @media (max-width: 1024px) {
-  
-}
-
-@media (max-width: 1024px) {
  
       .gen-hamburger {
         display: flex;
@@ -444,6 +440,81 @@
  
 
 @media (max-width: 480px) {
+  .gen-hamburger {
+        display: flex;
+      }
+ 
+      .gen-nav {
+        flex-wrap: wrap;
+        border-radius: 8px;
+        padding: 0 12px;
+      }
+ 
+      .gen-logo {
+        margin-right: auto;
+      }
+
+       .gen-logo img {
+        height: 100px;               /* más pequeño en mobile */
+      }
+ 
+      /* Menú oculto por defecto en mobile */
+      .gen-nav > ul {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        border-radius: 0 0 8px 8px;
+        padding: 8px 0;
+        overflow: hidden;
+        flex: unset;
+        justify-content: flex-start;
+      }
+ 
+      /* Clase .open agregada por JS */
+      .gen-nav > ul.open {
+        display: flex;
+      }
+ 
+      /* Nav con esquinas superiores rectas cuando el menú está abierto */
+      .gen-nav.mobile-open {
+        border-radius: 8px 8px 0 0;
+      }
+ 
+      .gen-nav > ul > li > a {
+        height: auto;
+        padding: 14px 20px;
+      }
+ 
+      /* Sin redondeo en last-child mobile */
+      .gen-nav > ul > li:last-child { border-radius: 0; overflow: visible; }
+      .gen-nav > ul > li:last-child > a { border-radius: 0; }
+ 
+      /* Submenú mobile: estático, sin sombra */
+      .gen-nav > ul > li > ul {
+        display: block;
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+        background: rgba(0,0,0,.15);
+        min-width: 0;
+        width: 100%;
+      }
+ 
+      .gen-nav > ul > li > ul > li:last-child { border-radius: 0; overflow: visible; }
+      .gen-nav > ul > li > ul > li:last-child > a { border-radius: 0; }
+      .gen-nav > ul > li > ul > li > a { padding: 10px 32px; }
+ 
+      /* Animación X en hamburguesa cuando está abierto */
+      .gen-nav.mobile-open .gen-hamburger span:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+      }
+      .gen-nav.mobile-open .gen-hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      .gen-nav.mobile-open .gen-hamburger span:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+      }
 }
   
 
