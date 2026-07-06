@@ -90,3 +90,73 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.matches) closeMenu();
   });
 });
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[0-9\s\-\+]+$/;
+
+const fields = [
+  { id: 'f-name',   wrap: 'wrap-name',   empty: 'El nombre es obligatorio.' },
+  { id: 'f-phone',  wrap: 'wrap-phone',  empty: 'El teléfono es obligatorio.',  format: 'Número de teléfono inválido.',  re: PHONE_RE },
+  { id: 'f-email',  wrap: 'wrap-email',  empty: 'El email es obligatorio.',     format: 'Formato de email inválido.',    re: EMAIL_RE },
+  { id: 'f-sector', wrap: 'wrap-sector', empty: 'El sector es obligatorio.' },
+  { id: 'f-msg',    wrap: 'wrap-msg',    empty: 'Este campo es obligatorio.' }
+];
+
+function setError(wrap, msg) {
+  const wrapEl = document.getElementById(wrap);
+  wrapEl.classList.add('has-error');
+  let span = wrapEl.querySelector('.error-msg');
+  if (!span) {
+    span = document.createElement('span');
+    span.className = 'error-msg';
+    wrapEl.appendChild(span);
+  }
+  span.textContent = msg;
+}
+
+function clearError(wrap) {
+  const wrapEl = document.getElementById(wrap);
+  wrapEl.classList.remove('has-error');
+  const span = wrapEl.querySelector('.error-msg');
+  if (span) span.remove();
+}
+
+function validateField(f) {
+  const el = document.getElementById(f.id);
+  const val = el.value.trim();
+  if (!val) { setError(f.wrap, f.empty); return false; }
+  if (f.re && !f.re.test(val)) { setError(f.wrap, f.format); return false; }
+  clearError(f.wrap);
+  return true;
+}
+
+// Limpia el error en tiempo real mientras el usuario escribe
+fields.forEach(f => {
+  document.getElementById(f.id).addEventListener('input', () => validateField(f));
+});
+
+function submitForm(e) {
+  e.preventDefault();
+  const valid = fields.map(f => validateField(f));
+  if (valid.every(Boolean)) {
+    document.getElementById('modal').classList.add('active');
+    document.getElementById('cf').reset();
+    fields.forEach(f => clearError(f.wrap));
+  } else {
+    // Foco en el primer campo con error
+    const firstError = document.querySelector('.has-error input, .has-error textarea');
+    if (firstError) firstError.focus();
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});

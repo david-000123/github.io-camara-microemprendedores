@@ -1,0 +1,221 @@
+:root{
+  --cream: #faf6ee;
+  --line: rgba(0,0,0,.08);
+  --text: #2b2b2b;
+  --gold:            #c98e20;
+  --gold-light:      #795c28;
+  --gold-pale:       #F7F1E6;
+  --gold-dark-h1:    #dab532d7;
+  --text-a:          #333333;
+  --text-light-p:    #414141;
+  --border:          #E8E5E0;
+  --bg:              #FFFFFF;
+  --bg-warm:         #FDFBF8;
+  --bg-section-noticia: #F9F7F4;
+  --bg-nav:          #faf7f0;
+  --bg-footer:       #1A1A1A;
+  --bg-grad-overlay: #fdfbf8ab;
+  --radius:          8px;
+  --shadow:          0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover:    0 12px 40px rgba(0,0,0,0.10);
+  --transition:      0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-h:           200px;
+  --nav-h-mobile:    110px;
+}
+
+/* z-index del header MAYOR que el del menú, así el logo/X siempre
+   quedan por encima sin importar si el <ul> se mueve en el DOM o no */
+header{ position:relative; z-index:10000; }
+
+/*  NAV  */
+.gen-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--nav-h);
+  background: var(--bg-nav);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+
+.gen-nav *, .gen-nav *::before, .gen-nav *::after { box-sizing: border-box; }
+.gen-nav ul { list-style: none; }
+
+/* Línea dorada al abrir */
+.gen-nav.mobile-open { border-bottom: 2px solid var(--gold); }
+
+/* Logo */
+.gen-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 32px;
+  padding: 8px 0;
+  position: relative;
+  z-index: 1001;
+}
+
+.gen-logo img {
+  height: 180px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Menú desktop (>1300px, el <ul> permanece dentro de .gen-nav) */
+.gen-nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.gen-nav > ul > li { position: relative; }
+
+.gen-nav > ul > li > a {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: var(--nav-h);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: letter-spacing var(--transition), color var(--transition);
+}
+
+.gen-nav > ul > li > a:hover {
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+/* Hamburger — oculto en desktop */
+.gen-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  z-index: 1200;
+  box-sizing: border-box;
+}
+
+.gen-hamburger span {
+  display: block;
+  background: var(--text-a);
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.gen-nav.mobile-open .gen-hamburger span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.gen-nav.mobile-open .gen-hamburger span:nth-child(2) { opacity: 0; }
+.gen-nav.mobile-open .gen-hamburger span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+/* ============================================================
+   PANEL DEL MENÚ (#gen-menu)
+   Se referencia SIEMPRE por ID, nunca por "body > ul..." — un ID
+   matchea al elemento exista donde exista en el DOM, así que
+   funciona tanto si tu JS mueve el <ul> a <body> al abrir como si
+   lo deja donde está (dentro de .gen-nav). Esto es lo que evita
+   los bugs de selectores rotos / dependientes de la estructura.
+   ============================================================ */
+#gen-menu.open{
+  display:flex !important;
+  flex-direction:column !important;
+  flex-wrap:nowrap !important;  /* evita que herede flex-wrap:wrap de .gen-nav > ul y se parta en columnas */
+  align-items:stretch;
+  justify-content:flex-start;
+
+  position:fixed;
+  top:var(--nav-h-mobile);   /* arranca justo debajo del header, nunca lo tapa */
+  left:0; right:0; bottom:0;
+
+  background:var(--bg-nav); /* var(--bg-nav) con alpha: efecto frosted glass */
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+
+  margin:0;
+  padding:8px 24px 48px;
+  list-style:none;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  z-index:9998; /* menor que header (10000): el logo/X siempre queda visible arriba */
+}
+
+#gen-menu.open li{
+  width:100%;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+#gen-menu.open li:first-child{
+  border-top:1px solid var(--border);
+}
+#gen-menu.open li a{
+  display:block;
+  height: auto;
+  padding:14px 0;
+  font-size:1.6rem;
+  font-weight:400;
+  padding: 20px 0;
+  font-family: "Cinzel Decorative", serif;
+  letter-spacing: 0.5px;
+  color:var(--text-a);
+  transition:color 0.2s ease;
+}
+#gen-menu.open li a:hover,
+#gen-menu.open li a.active{
+  color:var(--gold);
+}
+
+/* MEDIA QUERIES */
+
+/* ── 1300px: activar nav móvil ── */
+@media (max-width: 1300px) {
+  .gen-nav { height: var(--nav-h-mobile); }
+  .gen-logo img { height: 100px; }
+  .gen-hamburger { display: flex; }
+  .gen-nav > ul { display: none; } /* el <ul> horizontal de desktop se oculta; #gen-menu.open (arriba) toma su lugar */
+}
+
+/* ── 768px ── */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  .gen-nav { height: var(--nav-h-mobile); }
+  .gen-logo img { height: 100px; }
+  #gen-menu.open > li > a{
+   font-size: 1.5rem; padding: 18px 0
+  }
+}
+
+/* ── 480px ── */
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  .gen-nav { height: var(--nav-h-mobile); }
+  .gen-logo img { height: 100px; }
+   #gen-menu.open > li > a{
+   font-size: 1.5rem; padding: 18px 0
+  }
+}
+
+/* ── Landscape bajo: refuerzo por si el alto de pantalla es chico ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  #gen-menu.open{
+    flex-direction:column !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start;
+  }
+  #gen-menu.open li a { padding: 10px 0; font-size: 1rem; }
+  .gen-logo img { height: 100px; }
+}

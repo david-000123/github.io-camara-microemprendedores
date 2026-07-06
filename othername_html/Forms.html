@@ -70,68 +70,77 @@
     </div>
   </header>
 
-  <main>
-    <section class="noticia">
-      <div class="noticia__fondo"></div>
-      <div class="noticia__contenedor"></div>
+ <main>
+  <section class="noticia">
+    <div class="noticia__fondo"></div>
+    <div class="noticia__contenedor"></div>
 
-      <div class="noticia__media-principal">
-        <h2>Información de <span>contactos</span></h2>
+    <div class="noticia__media-principal">
+      <h2>Información de <span>contactos</span></h2>
+    </div>
+
+    <div class="noticia__media-secundaria">
+      <div class="noticia-hours-block">
+        <h3>Solicita más información</h3>
+        <p>EMAIL:</p>
+        <a href="mailto:nombredeempresa@gmail.com">nombredeempresa@gmail.com</a>
       </div>
+      <div class="noticia-hours-block">
+        <h3>Hablemos</h3>
+        <p>AMBA:</p>
+        <a href="tel:4-XXX-XXXX">4-XXX-XXXX</a>
+      </div>
+    </div>
 
-      <div class="noticia__media-secundaria">
-        <div class="noticia-hours-block">
-          <h3>Solicita más información</h3>
-          <p>EMAIL:</p>
-          <a href="mailto:nombredeempresa@gmail.com">nombredeempresa@gmail.com</a>
+    <div class="noticia__meta">
+      <div class="noticia-hours-block">
+        <h3>Horario de funcionamiento</h3>
+        <p>De lunes a viernes: de 7:00 a 19:00 HS.</p>
+        <p>Sábado: 8:00 a 16:00 HS.</p>
+        <p>Domingo: Cerrado</p>
+      </div>
+    </div>
+
+    <div class="noticia__sidebar">
+      <h3>Solicita una consulta</h3>
+      <form id="cf" novalidate onsubmit="submitForm(event)">
+        <div class="D-grid">
+          <div class="label" id="wrap-name">
+            <label for="f-name">Nombre y apellido *</label>
+            <input id="f-name" type="text" placeholder="Joaquín Lian" autocomplete="name">
+          </div>
+          <div class="label" id="wrap-phone">
+            <label for="f-phone">Teléfono *</label>
+            <input id="f-phone" type="tel" placeholder="+54-9-11-XXXX-XXXX" autocomplete="tel">
+          </div>
         </div>
-        <div class="noticia-hours-block">
-          <h3>Hablemos</h3>
-          <p>AMBA:</p>
-          <a href="tel:4-XXX-XXXX">4-XXX-XXXX</a>
+        <div class="label" id="wrap-email">
+          <label for="f-email">Dirección de correo electrónico profesional *</label>
+          <input id="f-email" type="email" placeholder="Joaquín_Lian@Microemprendedores.com" autocomplete="email">
         </div>
-      </div>
-
-      <div class="noticia__meta">
-        <div class="noticia-hours-block">
-          <h3>Horario de funcionamiento</h3>
-          <p>De lunes a viernes: de 7:00 a 19:00.</p>
-          <p>Sábado: 8:00 a. m. – 4:00 p. m.</p>
-          <p>Domingo: Cerrado</p>
+        <div class="label" id="wrap-sector">
+          <label for="f-sector">Sector empresarial *</label>
+          <input id="f-sector" type="text" placeholder="Ej: Dueño de gimnasio, Fotógrafo…">
         </div>
-      </div>
+        <div class="label" id="wrap-msg">
+          <label for="f-msg">Tu necesidad *</label>
+          <textarea id="f-msg" placeholder="Ej: optimizar mis ingresos, hacer que el negocio crezca…"></textarea>
+        </div>
+        <button type="submit" class="enviar">Enviar mi solicitud →</button>
+        <p class="p-note">Datos confidenciales · Respuesta garantizada en 24 horas</p>
+      </form>
+    </div>
+  </section>
+</main>
 
-      <div class="noticia__sidebar">
-        <h3>Solicita una consulta</h3>
-        <form id="cf" onsubmit="submitForm(event)">
-          <div class="D-grid">
-            <div class="label">
-              <label>Nombre y apellido *</label>
-              <input type="text" placeholder="Joaquín Lian" required>
-            </div>
-            <div class="label">
-              <label>Teléfono *</label>
-              <input type="tel" placeholder="+54-9-11-XXXX-XXXX" required>
-            </div>
-          </div>
-          <div class="label">
-            <label>Dirección de correo electrónico profesional *</label>
-            <input type="email" placeholder="Joaquín_Lian@Microemprendedores.com" required>
-          </div>
-          <div class="label">
-            <label>Sector empresarial</label>
-            <input type="text" placeholder="Ej: Dueño de gimnasio, Fotógrafo, Dueño de restaurante…">
-          </div>
-          <div class="label">
-            <label>Tu necesidad</label>
-            <textarea placeholder="Ej: optimizar mis ingresos, hacer que el negocio crezca…"></textarea>
-          </div>
-          <button type="submit" class="enviar">Enviar mi solicitud →</button>
-          <p class="p-note">Datos confidenciales · Respuesta garantizada en 24 horas</p>
-        </form>
-      </div>
-    </section>
-  </main>
+<!-- Modal de confirmación -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+    <h3 id="modal-title">Formulario enviado correctamente</h3>
+    <p>Gracias por contactarnos. Te responderemos pronto.</p>
+  </div>
+</div>
 
   <footer class="footer">
     <div class="footer-container">
@@ -198,6 +207,6 @@
   </footer>
 
   <script src="../assist/styles/form.js"></script>
-  <script src="../assist/styles/nav.js"></script>
+  <script src="../assist/styles/validation.js"></script>
 </body>
 </html>
